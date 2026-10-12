@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>APNA FURNITURES - Duryodhan Beura</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Phosphor Icons & Lucide icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wood: {
+              50: '#fdf8f4',
+              100: '#f7ede2',
+              200: '#edd8c3',
+              300: '#dec09f',
+              400: '#cca278',
+              500: '#b88455',
+              600: '#9d6741',
+              700: '#7f4e34',
+              800: '#643d2d',
+              900: '#4e3025',
+              950: '#2b1811',
+            },
+            accent: {
+              amber: '#d97706',
+              gold: '#f59e0b',
+              whatsapp: '#25D366'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom mobile app touch-friendly styles */
+    body {
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    input, textarea {
+      user-select: text;
+    }
+    /* Hide scrollbars for clean app feeling */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .safe-bottom {
+      padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    }
+  </style>
+</head>
+<body class="bg-stone-100 text-stone-800 min-h-screen flex flex-col items-center justify-start antialiased selection:bg-amber-200">
+
+  <!-- Mobile Container Wrapper for Native App Simulation -->
+  <div id="appContainer" class="w-full max-w-md bg-white min-h-screen relative shadow-2xl flex flex-col border-x border-stone-200">
+
+    <!-- Top App Header -->
+    <header class="sticky top-0 z-40 bg-wood-900 text-white px-4 pt-3 pb-3 shadow-md">
+      <div class="flex items-center justify-between mb-2">
+        <div class="flex items-center space-x-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-600 to-wood-500 flex items-center justify-center shadow text-white font-bold text-lg border border-amber-300/40">
+            <i class="fa-solid fa-couch text-sm"></i>
+          </div>
+          <div>
+            <h1 class="font-extrabold text-base tracking-wide flex items-center gap-1.5 leading-tight">
+              APNA FURNITURES
+              <span class="text-[10px] bg-amber-500/30 text-amber-300 px-1.5 py-0.5 rounded-full font-medium border border-amber-400/30">Badamba</span>
+            </h1>
+            <p class="text-[11px] text-amber-200/90 font-medium leading-none">Prop: Duryodhan Beura</p>
+          </div>
+        </div>
+
+        <!-- Quick Call & Chat Action Icons -->
+        <div class="flex items-center space-x-1.5">
+          <a href="tel:9937867692" title="Call Duryodhan Beura" class="w-8 h-8 rounded-full bg-wood-800/80 hover:bg-wood-700 flex items-center justify-center text-amber-300 border border-wood-700 transition">
+            <i class="fa-solid fa-phone text-xs"></i>
+          </a>
+          <button onclick="openWhatsAppChat('Hello Duryodhan ji, I have an inquiry about Apna Furnitures!')" class="w-8 h-8 rounded-full bg-emerald-600 hover:bg-emerald-500 flex items-center justify-center text-white shadow transition">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+          </button>
+          <!-- Founder Portal Key Lock Icon -->
+          <button id="founderPortalBtn" onclick="handleFounderAuthClick()" title="Founder/Owner Portal" class="w-8 h-8 rounded-full bg-amber-700/80 hover:bg-amber-600 flex items-center justify-center text-amber-200 border border-amber-500/40 shadow transition">
+            <i id="founderLockIcon" class="fa-solid fa-lock text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Founder Active Status Ribbon (Visible only when founder logged in) -->
+      <div id="founderActiveBar" class="hidden bg-gradient-to-r from-amber-600 to-amber-700 text-stone-950 font-bold px-2.5 py-1 rounded-lg mb-2 text-[11px] flex items-center justify-between shadow-inner">
+        <div class="flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
+          <span class="text-white text-[10px] tracking-wide font-extrabold uppercase">FOUNDER MODE • Duryodhan Beura</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="toggleAdminCameraModal(true)" class="bg-wood-950 text-amber-300 hover:text-white px-2 py-0.5 rounded text-[10px] font-bold shadow-sm flex items-center gap-1">
+            <i class="fa-solid fa-camera"></i> Camera Studio
+          </button>
+          <button onclick="logoutFounderMode()" class="text-white/80 hover:text-white underline text-[10px]">
+            Logout
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Owner Banner & Address Bar -->
+      <div class="bg-wood-950/60 rounded-lg p-2 border border-wood-800/80 text-[11px] flex items-center justify-between">
+        <div class="truncate pr-2">
+          <span class="text-amber-400 font-semibold"><i class="fa-solid fa-location-dot mr-1"></i> Workshop:</span>
+          <span class="text-stone-300">Bangarsingha, Badamba, Cuttack - 754031</span>
+        </div>
+        <button onclick="showOwnerDetailsModal()" class="text-amber-400 hover:underline font-medium text-[10px] whitespace-nowrap bg-wood-800/70 px-1.5 py-0.5 rounded">
+          Info
+        </button>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="mt-2.5 relative">
+        <input 
+          id="furnitureSearchInput" 
+          type="text" 
+          placeholder="Search sofa, bed, dining, mirror, shelf..." 
+          oninput="handleSearch(this.value)"
+          class="w-full pl-9 pr-8 py-1.5 rounded-lg bg-wood-950/80 border border-wood-700 text-stone-100 placeholder-stone-400 text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 transition"
+        />
+        <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-stone-400 text-xs"></i>
+        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 top-2 text-stone-400 hover:text-white text-xs">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Category Pills Navigation -->
+    <div class="bg-white border-b border-stone-200 px-3 py-2 sticky top-[152px] z-30 shadow-sm">
+      <div id="categoryContainer" class="flex space-x-2 overflow-x-auto no-scrollbar py-0.5 text-xs font-medium">
+        <!-- Categories injected via JS -->
+      </div>
+    </div>
+
+    <!-- MAIN VIEW CONTAINER (Tabs: Catalog, Wishlist, Cart, About) -->
+    <main class="flex-1 pb-24 safe-bottom">
+      
+      <!-- TAB 1: CATALOG VIEW -->
+      <section id="viewCatalog" class="p-3">
+        <!-- Banner Carousel / Workshop Promise -->
+        <div class="relative rounded-xl overflow-hidden bg-gradient-to-r from-wood-800 to-wood-900 text-white p-3.5 mb-4 shadow-md border border-wood-700">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="bg-amber-500/20 text-amber-300 border border-amber-400/30 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full inline-block mb-1">
+                Direct From Badamba Workshop
+              </span>
+              <h2 class="text-sm font-extrabold text-white leading-tight">Handmade Teak & Sal Wood Designs</h2>
+              <p class="text-[11px] text-stone-300 mt-0.5">Custom sizes available. Delivery across Odisha!</p>
+            </div>
+            <!-- Dynamic Workshop Button: Only allows camera upload if logged in, otherwise opens owner credentials -->
+            <button id="bannerActionBtn" onclick="handleProtectedCameraClick()" class="flex flex-col items-center justify-center bg-amber-500 hover:bg-amber-400 text-wood-950 px-2.5 py-1.5 rounded-lg shadow font-semibold text-[11px] transition shrink-0 ml-2">
+              <i id="bannerActionIcon" class="fa-solid fa-lock mb-0.5 text-sm"></i>
+              <span id="bannerActionText">Founder Login</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Products Grid -->
+        <div class="flex items-center justify-between mb-2">
+          <h3 id="currentCategoryTitle" class="font-bold text-stone-800 text-sm">All Furniture (0)</h3>
+          <span class="text-[11px] text-stone-500">100% Genuine Handcrafted</span>
+        </div>
+
+        <div id="productsGrid" class="grid grid-cols-2 gap-3">
+          <!-- Dynamic furniture cards rendered via JS -->
+        </div>
+
+        <div id="noProductsFound" class="hidden py-12 text-center text-stone-500">
+          <i class="fa-solid fa-couch text-4xl text-stone-300 mb-2"></i>
+          <p class="text-sm font-semibold">No furniture matching your criteria</p>
+          <p class="text-xs text-stone-400">Try searching for beds, sofas, or dining sets.</p>
+        </div>
+      </section>
+
+      <!-- TAB 2: WISHLIST VIEW -->
+      <section id="viewWishlist" class="p-3 hidden">
+        <div class="flex items-center justify-between mb-3 border-b pb-2">
+          <div>
+            <h2 class="text-base font-bold text-stone-800">Your Wishlist</h2>
+            <p class="text-xs text-stone-500">Saved designs you love</p>
+          </div>
+          <span id="wishlistCountBadge" class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">0 Items</span>
+        </div>
+
+        <div id="wishlistGrid" class="grid grid-cols-2 gap-3">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div id="emptyWishlistState" class="hidden py-16 text-center text-stone-400">
+          <i class="fa-regular fa-heart text-5xl text-stone-300 mb-3"></i>
+          <p class="text-sm font-bold text-stone-700">Your wishlist is empty</p>
+          <p class="text-xs text-stone-400 mt-1 max-w-[200px] mx-auto">Tap the heart icon on any sofa, bed, or table to save it here!</p>
+          <button onclick="switchTab('catalog')" class="mt-4 px-4 py-1.5 bg-wood-800 text-white rounded-lg text-xs font-semibold shadow">
+            Explore Furniture
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 3: CART VIEW -->
+      <section id="viewCart" class="p-3 hidden">
+        <div class="flex items-center justify-between mb-3 border-b pb-2">
+          <div>
+            <h2 class="text-base font-bold text-stone-800">Shopping Cart</h2>
+            <p class="text-xs text-stone-500">Review selected furniture items</p>
+          </div>
+          <span id="cartCountBadge" class="text-xs bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">0 Items</span>
+        </div>
+
+        <div id="cartItemsContainer" class="space-y-3 mb-4">
+          <!-- Populated dynamically -->
+        </div>
+
+        <div id="emptyCartState" class="hidden py-16 text-center text-stone-400">
+          <i class="fa-solid fa-cart-shopping text-5xl text-stone-300 mb-3"></i>
+          <p class="text-sm font-bold text-stone-700">Your cart is empty</p>
+          <p class="text-xs text-stone-400 mt-1">Add hand-crafted furniture to start placing an order.</p>
+          <button onclick="switchTab('catalog')" class="mt-4 px-4 py-1.5 bg-wood-800 text-white rounded-lg text-xs font-semibold shadow">
+            Browse Designs
+          </button>
+        </div>
+
+        <!-- Order Summary & Checkout Trigger (Visible if items in cart) -->
+        <div id="cartCheckoutSection" class="bg-stone-50 rounded-xl p-3.5 border border-stone-200 mt-4 space-y-2">
+          <h4 class="font-bold text-xs text-stone-800 uppercase tracking-wider">Price Details</h4>
+          
+          <div class="flex justify-between text-xs text-stone-600">
+            <span>Items Subtotal</span>
+            <span id="cartSubtotal" class="font-semibold text-stone-800">₹0</span>
+          </div>
+          <div class="flex justify-between text-xs text-stone-600">
+            <span>Local Delivery (Odisha)</span>
+            <span class="text-emerald-600 font-semibold">FREE (Special Promo)</span>
+          </div>
+          <div class="flex justify-between text-xs text-stone-600">
+            <span>Wood Polish & Assembly</span>
+            <span class="text-emerald-600 font-semibold">Included</span>
+          </div>
+
+          <div class="border-t border-stone-200 pt-2 flex justify-between text-sm font-bold text-wood-950">
+            <span>Total Payable Amount</span>
+            <span id="cartTotal" class="text-amber-700 text-base">₹0</span>
+          </div>
+
+          <button onclick="openDeliveryAddressModal()" class="w-full mt-3 bg-wood-800 hover:bg-wood-900 active:scale-[0.99] text-white py-2.5 rounded-xl font-bold text-xs flex items-center justify-center gap-2 shadow-md transition">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>Proceed to Delivery & Payment</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- TAB 4: OWNER & STORE PROFILE VIEW -->
+      <section id="viewOwner" class="p-3 hidden">
+        <div class="bg-gradient-to-b from-wood-900 to-wood-800 rounded-2xl p-5 text-white shadow-lg text-center relative overflow-hidden mb-4">
+          <div class="w-20 h-20 rounded-full border-4 border-amber-400/50 bg-wood-700 mx-auto flex items-center justify-center shadow-inner text-2xl font-black text-amber-200 mb-2">
+            DB
+          </div>
+          <h2 class="text-lg font-bold text-white tracking-wide">DURYODHAN BEURA</h2>
+          <p class="text-xs text-amber-300 font-medium">Founder & Master Craftsman</p>
+          <p class="text-[11px] text-stone-300 mt-1">Specialized in handmade Teak, Sal, & Sissoo wooden furniture.</p>
+          
+          <div class="mt-4 flex justify-center gap-2">
+            <a href="tel:9937867692" class="px-3.5 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-wood-950 font-bold text-xs inline-flex items-center gap-1.5 shadow">
+              <i class="fa-solid fa-phone"></i> Call 9937867692
+            </a>
+            <button onclick="openWhatsAppChat('Namaskar Duryodhan ji, I want to talk about custom furniture order.')" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs inline-flex items-center gap-1.5 shadow">
+              <i class="fa-brands fa-whatsapp"></i> WhatsApp
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl p-4 border border-stone-200 shadow-sm space-y-3.5 mb-4 text-xs">
+          <h3 class="font-bold text-stone-800 text-sm border-b pb-1.5 flex items-center gap-2">
+            <i class="fa-solid fa-store text-amber-600"></i> Workshop & Store Details
+          </h3>
+
+          <div class="flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-stone-800">Workshop Address</p>
+              <p class="text-stone-600 text-[11px] leading-relaxed">
+                Bangarsingha, Badamba, Cuttack (Kataka), Odisha, India<br>
+                <strong class="text-stone-700">PIN Code: 754031</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-stone-800">Direct Contact Number</p>
+              <p class="text-stone-600 text-[11px]">+91 9937867692 (Duryodhan Beura)</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center shrink-0">
+              <i class="fa-brands fa-whatsapp"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-stone-800">WhatsApp Instant Ordering</p>
+              <p class="text-stone-600 text-[11px]">Direct inquiry & design sharing available 24/7</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <div class="w-7 h-7 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center shrink-0">
+              <i class="fa-solid fa-hammer"></i>
+            </div>
+            <div>
+              <p class="font-semibold text-stone-800">Custom Home-Made Furniture</p>
+              <p class="text-stone-600 text-[11px]">Send us any design photo, and we will build it to your exact room measurements!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-amber-50 rounded-xl p-3 border border-amber-200">
+          <p class="text-xs font-semibold text-amber-900 mb-1">🛠️ Workshop Guarantee</p>
+          <p class="text-[11px] text-amber-800 leading-relaxed">
+            Every piece is seasoned against termites and polished by our local artisans in Badamba. 5-year wood guarantee on all solid wood collections.
+          </p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Floating Live Chat Button with Duryodhan / Support -->
+    <div class="fixed right-4 bottom-20 z-40 max-w-md">
+      <button onclick="toggleLiveChat(true)" class="relative flex items-center gap-2 bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-500 hover:to-teal-600 text-white px-3.5 py-2 rounded-full shadow-xl transition transform active:scale-95 text-xs font-bold border border-white/30">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-300 animate-ping absolute -top-0.5 -right-0.5"></span>
+        <i class="fa-solid fa-comments text-sm"></i>
+        <span>Chat with Owner</span>
+      </button>
+    </div>
+
+    <!-- Bottom Navigation Bar (App Native Style) -->
+    <nav class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md bg-white border-t border-stone-200 z-50 px-2 py-1.5 flex justify-around items-center shadow-lg">
+      
+      <!-- Nav Button: Shop -->
+      <button id="navBtnCatalog" onclick="switchTab('catalog')" class="flex flex-col items-center justify-center flex-1 py-1 text-amber-700">
+        <i class="fa-solid fa-couch text-base"></i>
+        <span class="text-[10px] font-semibold mt-0.5">Shop</span>
+      </button>
+
+      <!-- Nav Button: Wishlist -->
+      <button id="navBtnWishlist" onclick="switchTab('wishlist')" class="flex flex-col items-center justify-center flex-1 py-1 text-stone-500 hover:text-amber-700 relative">
+        <i class="fa-solid fa-heart text-base"></i>
+        <span id="badgeWishlistNav" class="hidden absolute top-0 right-5 w-4 h-4 rounded-full bg-rose-500 text-white text-[9px] font-bold flex items-center justify-center">0</span>
+        <span class="text-[10px] font-semibold mt-0.5">Wishlist</span>
+      </button>
+
+      <!-- Nav Button: Add Custom (Camera Quick) - Protected for Founder Only -->
+      <button id="centerNavActionBtn" onclick="handleProtectedCameraClick()" class="flex flex-col items-center justify-center flex-1 py-1 -mt-5">
+        <div id="centerNavCircle" class="w-11 h-11 rounded-full bg-stone-700 text-amber-300 flex items-center justify-center shadow-lg border-2 border-white transform active:scale-90 transition">
+          <i id="centerNavIcon" class="fa-solid fa-lock text-base"></i>
+        </div>
+        <span id="centerNavLabel" class="text-[10px] font-semibold mt-0.5 text-stone-700">Founder</span>
+      </button>
+
+      <!-- Nav Button: Cart -->
+      <button id="navBtnCart" onclick="switchTab('cart')" class="flex flex-col items-center justify-center flex-1 py-1 text-stone-500 hover:text-amber-700 relative">
+        <i class="fa-solid fa-cart-shopping text-base"></i>
+        <span id="badgeCartNav" class="hidden absolute top-0 right-5 w-4 h-4 rounded-full bg-amber-600 text-white text-[9px] font-bold flex items-center justify-center">0</span>
+        <span class="text-[10px] font-semibold mt-0.5">Cart</span>
+      </button>
+
+      <!-- Nav Button: Owner -->
+      <button id="navBtnOwner" onclick="switchTab('owner')" class="flex flex-col items-center justify-center flex-1 py-1 text-stone-500 hover:text-amber-700">
+        <i class="fa-solid fa-user-tie text-base"></i>
+        <span class="text-[10px] font-semibold mt-0.5">Owner</span>
+      </button>
+    </nav>
+
+    <!-- ============================================== -->
+    <!-- MODAL 0: FOUNDER / OWNER AUTHENTICATION MODAL -->
+    <!-- ============================================== -->
+    <div id="founderLoginModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl space-y-3.5 border border-stone-200">
+        <div class="flex items-center justify-between border-b pb-2">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 flex items-center justify-center text-sm font-bold">
+              <i class="fa-solid fa-shield-halved"></i>
+            </span>
+            <div>
+              <h3 class="font-extrabold text-sm text-stone-900 leading-tight">Founder Portal</h3>
+              <p class="text-[10px] text-stone-500">Camera & Inventory Control</p>
+            </div>
+          </div>
+          <button onclick="toggleFounderLoginModal(false)" class="text-stone-400 hover:text-stone-700 p-1">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <div class="bg-amber-50 rounded-xl p-3 border border-amber-200 text-left space-y-1">
+          <p class="text-xs font-bold text-amber-950 flex items-center gap-1.5">
+            <i class="fa-solid fa-user-shield text-amber-700"></i> Duryodhan Beura Only
+          </p>
+          <p class="text-[11px] text-amber-900 leading-relaxed">
+            Camera recording, listing homemade furniture, setting shop prices, and item deletion are restricted to the workshop owner.
+          </p>
+        </div>
+
+        <div class="space-y-2.5 text-left">
+          <div>
+            <label class="block text-[11px] font-bold text-stone-700 mb-1">Founder Mobile Number</label>
+            <input 
+              id="founderAuthPhone" 
+              type="tel" 
+              value="9937867692" 
+              placeholder="9937867692" 
+              class="w-full text-xs p-2.5 border border-stone-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono"
+            >
+          </div>
+
+          <div>
+            <label class="block text-[11px] font-bold text-stone-700 mb-1">Founder Security PIN / Badamba PIN</label>
+            <input 
+              id="founderAuthPin" 
+              type="password" 
+              placeholder="Enter PIN (e.g., 754031 or 1234)" 
+              class="w-full text-xs p-2.5 border border-stone-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-amber-500 font-mono tracking-widest"
+              onkeydown="if(event.key === 'Enter') submitFounderLogin()"
+            >
+            <p class="text-[10px] text-stone-400 mt-1">Hint: Workshop PIN is <strong>754031</strong> or <strong>1234</strong></p>
+          </div>
+
+          <div id="founderAuthError" class="hidden p-2 rounded-lg bg-rose-50 text-rose-700 text-[11px] font-semibold border border-rose-200 text-center">
+            Incorrect Mobile or Security PIN.
+          </div>
+        </div>
+
+        <div class="space-y-2 pt-1">
+          <button onclick="submitFounderLogin()" class="w-full py-2.5 bg-wood-800 hover:bg-wood-900 active:scale-[0.98] text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-unlock-keyhole"></i> Unlock Camera & Founder Controls
+          </button>
+          <button onclick="toggleFounderLoginModal(false)" class="w-full py-2 text-stone-400 hover:text-stone-600 text-xs font-medium">
+            Continue as Customer
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL 1: ADD FURNITURE / CAMERA CAPTURE (OWNER) -->
+    <!-- ============================================== -->
+    <div id="adminCameraModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl max-h-[92vh] overflow-y-auto p-4 flex flex-col shadow-2xl">
+        <div class="flex items-center justify-between border-b pb-2 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center">
+              <i class="fa-solid fa-camera text-xs"></i>
+            </span>
+            <div>
+              <h3 class="font-bold text-sm text-stone-900">Add Furniture with Camera</h3>
+              <p class="text-[10px] text-stone-500">Capture homemade furniture from Badamba workshop</p>
+            </div>
+          </div>
+          <button onclick="toggleAdminCameraModal(false)" class="text-stone-400 hover:text-stone-700 p-1">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <!-- Camera Viewfinder & Preview Section -->
+        <div class="space-y-3">
+          <div class="relative w-full aspect-video bg-stone-900 rounded-xl overflow-hidden flex flex-col items-center justify-center border-2 border-dashed border-stone-300">
+            <!-- Video element for live stream -->
+            <video id="cameraVideo" autoplay playsinline class="w-full h-full object-cover hidden"></video>
+            
+            <!-- Canvas for snapping photo -->
+            <canvas id="cameraCanvas" class="hidden"></canvas>
+            
+            <!-- Image element to display snapped or uploaded photo -->
+            <img id="photoPreview" src="" alt="Captured Furniture" class="w-full h-full object-cover hidden">
+            
+            <!-- Default placeholder view -->
+            <div id="cameraPlaceholder" class="text-center p-3 text-stone-400">
+              <i class="fa-solid fa-camera text-3xl mb-1 text-stone-500"></i>
+              <p class="text-xs font-semibold text-stone-300">Live Camera or Gallery Upload</p>
+              <p class="text-[10px] text-stone-500">Take a photo of new wooden beds, chairs, or sofas</p>
+            </div>
+
+            <!-- In-frame camera controls -->
+            <div id="liveStreamControls" class="absolute bottom-2 inset-x-0 hidden flex justify-center gap-2 px-3">
+              <button onclick="captureLivePhoto()" class="px-3 py-1.5 bg-amber-500 text-wood-950 font-bold rounded-full text-xs shadow-lg flex items-center gap-1.5 active:scale-95">
+                <i class="fa-solid fa-circle-dot"></i> Snap Photo
+              </button>
+              <button onclick="stopCameraStream()" class="px-2.5 py-1.5 bg-stone-800/80 text-white rounded-full text-xs">
+                Cancel
+              </button>
+            </div>
+          </div>
+
+          <!-- Camera Trigger Buttons -->
+          <div class="grid grid-cols-2 gap-2">
+            <button onclick="startLiveCamera()" type="button" class="py-2 px-3 bg-wood-800 hover:bg-wood-900 text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 shadow">
+              <i class="fa-solid fa-camera"></i> Open Camera
+            </button>
+            
+            <label class="py-2 px-3 bg-stone-100 hover:bg-stone-200 border border-stone-300 text-stone-700 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer shadow-sm">
+              <i class="fa-solid fa-images text-stone-500"></i> Upload Photo
+              <input type="file" id="fileImageInput" accept="image/*" capture="environment" class="hidden" onchange="handleFileUpload(event)">
+            </label>
+          </div>
+
+          <!-- Item Details Form -->
+          <div class="space-y-2 pt-2">
+            <div>
+              <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Furniture Name *</label>
+              <input id="newProdName" type="text" placeholder="e.g. Teak Wood Royal Diwan Bed" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Category *</label>
+                <select id="newProdCategory" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500 bg-white">
+                  <option value="Sofa">Sofa</option>
+                  <option value="Bed">Bed</option>
+                  <option value="Dining">Dining Table</option>
+                  <option value="Chair">Chair</option>
+                  <option value="Mirror">Mirror</option>
+                  <option value="Shelf">Self / Rack</option>
+                  <option value="Handmade">Handmade Custom</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Price (₹) *</label>
+                <input id="newProdPrice" type="number" placeholder="e.g. 18500" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Material & Dimensions</label>
+              <input id="newProdMaterial" type="text" placeholder="e.g. 100% Pure Teak Wood, 6x5 Feet, Honey Gloss" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Description (Optional)</label>
+              <textarea id="newProdDesc" rows="2" placeholder="Handcrafted at Badamba shop with termite resistant treatment." class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+            </div>
+          </div>
+
+          <div class="pt-2 flex gap-2">
+            <button onclick="saveNewFurnitureProduct()" class="flex-1 py-2.5 bg-amber-600 hover:bg-amber-500 active:scale-[0.98] text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-1.5">
+              <i class="fa-solid fa-plus-circle"></i> Save to Shop Catalog
+            </button>
+            <button onclick="toggleAdminCameraModal(false)" class="py-2.5 px-3 bg-stone-200 text-stone-700 rounded-xl text-xs font-semibold">
+              Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL 2: DELIVERY ADDRESS & PAYMENT CHECKOUT -->
+    <!-- ============================================== -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl max-h-[92vh] overflow-y-auto p-4 flex flex-col shadow-2xl">
+        <div class="flex items-center justify-between border-b pb-2 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <i class="fa-solid fa-truck text-xs"></i>
+            </span>
+            <div>
+              <h3 class="font-bold text-sm text-stone-900">Delivery Address & Payment</h3>
+              <p class="text-[10px] text-stone-500">Fast delivery from Badamba Kataka</p>
+            </div>
+          </div>
+          <button onclick="toggleCheckoutModal(false)" class="text-stone-400 hover:text-stone-700 p-1">
+            <i class="fa-solid fa-xmark text-lg"></i>
+          </button>
+        </div>
+
+        <div class="space-y-3">
+          <!-- Step indicator -->
+          <div class="flex items-center justify-around bg-stone-100 p-1.5 rounded-lg text-xs font-bold">
+            <span class="text-amber-800 flex items-center gap-1"><i class="fa-solid fa-location-dot"></i> 1. Address</span>
+            <span class="text-stone-400">➔</span>
+            <span class="text-amber-800 flex items-center gap-1"><i class="fa-solid fa-credit-card"></i> 2. Payment</span>
+          </div>
+
+          <!-- Customer Delivery Address Form -->
+          <div class="space-y-2">
+            <div>
+              <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Full Name *</label>
+              <input id="custName" type="text" placeholder="Enter recipient full name" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+
+            <div class="grid grid-cols-2 gap-2">
+              <div>
+                <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Mobile Phone *</label>
+                <input id="custPhone" type="tel" placeholder="10-digit number" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+              </div>
+              <div>
+                <label class="block text-[11px] font-bold text-stone-700 mb-0.5">PIN Code *</label>
+                <input id="custPin" type="text" placeholder="e.g. 754031" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Street Address / Village / Town *</label>
+              <textarea id="custAddress" rows="2" placeholder="House No, Village/Street, Post Office, Badamba/Cuttack" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-stone-700 mb-0.5">Landmark</label>
+              <input id="custLandmark" type="text" placeholder="Near Temple / School / Hospital" class="w-full text-xs p-2 border border-stone-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-amber-500">
+            </div>
+          </div>
+
+          <!-- Payment Options -->
+          <div class="border-t pt-2 space-y-2">
+            <label class="block text-[11px] font-bold text-stone-800">Select Payment Method</label>
+            
+            <div class="space-y-1.5">
+              <label class="flex items-center justify-between p-2.5 rounded-xl border border-stone-200 cursor-pointer hover:bg-stone-50 has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/50">
+                <div class="flex items-center gap-2">
+                  <input type="radio" name="paymentOption" value="UPI" checked class="text-amber-600 focus:ring-amber-500">
+                  <div>
+                    <p class="text-xs font-bold text-stone-800">Online UPI (GPay, PhonePe, Paytm)</p>
+                    <p class="text-[10px] text-stone-500">Direct payment to 9937867692 / UPI QR</p>
+                  </div>
+                </div>
+                <div class="flex gap-1 text-sm text-stone-600">
+                  <i class="fa-brands fa-google-pay text-base text-blue-600"></i>
+                </div>
+              </label>
+
+              <label class="flex items-center justify-between p-2.5 rounded-xl border border-stone-200 cursor-pointer hover:bg-stone-50 has-[:checked]:border-amber-600 has-[:checked]:bg-amber-50/50">
+                <div class="flex items-center gap-2">
+                  <input type="radio" name="paymentOption" value="COD" class="text-amber-600 focus:ring-amber-500">
+                  <div>
+                    <p class="text-xs font-bold text-stone-800">Cash on Delivery (Pay on Inspection)</p>
+                    <p class="text-[10px] text-stone-500">Pay Duryodhan Beura upon furniture arrival</p>
+                  </div>
+                </div>
+                <i class="fa-solid fa-money-bill-wave text-amber-700 text-sm"></i>
+              </label>
+            </div>
+          </div>
+
+          <!-- Summary and confirmation buttons -->
+          <div class="bg-stone-100 p-2.5 rounded-xl text-xs space-y-1">
+            <div class="flex justify-between font-bold text-stone-800">
+              <span>Payable Total:</span>
+              <span id="modalCheckoutTotal" class="text-amber-800 text-sm">₹0</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 pt-1">
+            <button onclick="processOrderCheckout()" class="w-full py-2.5 bg-wood-800 hover:bg-wood-900 active:scale-[0.98] text-white rounded-xl text-xs font-bold shadow-md flex items-center justify-center gap-2">
+              <i class="fa-solid fa-shield-halved text-emerald-400"></i>
+              <span>Confirm Order & Make Payment</span>
+            </button>
+            <button onclick="toggleCheckoutModal(false)" class="w-full py-2 text-stone-500 hover:text-stone-700 text-xs font-medium">
+              Go Back to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL 3: UPI PAYMENT GATEWAY SIMULATOR -->
+    <!-- ============================================== -->
+    <div id="upiPaymentModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-800 mx-auto flex items-center justify-center text-xl">
+          <i class="fa-solid fa-qrcode"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-base text-stone-900">Scan & Pay to APNA FURNITURES</h3>
+          <p class="text-xs text-stone-500">Proprietor: Duryodhan Beura</p>
+          <p class="text-xs text-amber-700 font-mono font-bold mt-1">UPI ID: 9937867692@upi</p>
+        </div>
+
+        <!-- Simulated QR code Box -->
+        <div class="bg-stone-100 p-4 rounded-xl border border-stone-200 inline-block shadow-inner">
+          <svg class="w-36 h-36 mx-auto text-stone-900" viewBox="0 0 100 100" fill="currentColor">
+            <!-- Simulated QR pattern -->
+            <rect x="5" y="5" width="28" height="28" fill="#1c1917" />
+            <rect x="9" y="9" width="20" height="20" fill="#ffffff" />
+            <rect x="13" y="13" width="12" height="12" fill="#1c1917" />
+
+            <rect x="67" y="5" width="28" height="28" fill="#1c1917" />
+            <rect x="71" y="9" width="20" height="20" fill="#ffffff" />
+            <rect x="75" y="13" width="12" height="12" fill="#1c1917" />
+
+            <rect x="5" y="67" width="28" height="28" fill="#1c1917" />
+            <rect x="9" y="71" width="20" height="20" fill="#ffffff" />
+            <rect x="13" y="75" width="12" height="12" fill="#1c1917" />
+
+            <rect x="40" y="8" width="8" height="8" fill="#1c1917" />
+            <rect x="50" y="15" width="10" height="10" fill="#1c1917" />
+            <rect x="38" y="28" width="6" height="16" fill="#1c1917" />
+            <rect x="48" y="32" width="16" height="8" fill="#1c1917" />
+            <rect x="70" y="40" width="8" height="18" fill="#1c1917" />
+            <rect x="10" y="40" width="18" height="10" fill="#1c1917" />
+            <rect x="38" y="60" width="14" height="10" fill="#1c1917" />
+            <rect x="55" y="55" width="16" height="20" fill="#1c1917" />
+            <rect x="40" y="75" width="8" height="15" fill="#1c1917" />
+            <rect x="75" y="75" width="15" height="15" fill="#1c1917" />
+          </svg>
+          <p id="upiAmountPrompt" class="text-xs font-black text-amber-900 mt-2">Amount: ₹0</p>
+        </div>
+
+        <div class="text-[11px] text-stone-500 bg-amber-50 p-2 rounded-lg border border-amber-200">
+          After sending via Google Pay / PhonePe / Paytm, click "I Have Paid" to generate your order receipt and send order slip directly on WhatsApp.
+        </div>
+
+        <div class="space-y-2 pt-1">
+          <button onclick="finalizePaymentSuccess('Online UPI')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs shadow flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-check-circle"></i> I Have Paid (Verify Order)
+          </button>
+          <button onclick="toggleUpiModal(false)" class="w-full py-1.5 text-stone-400 hover:text-stone-700 text-xs">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL 4: ORDER SUCCESS RECEIPT & WHATSAPP SLIP -->
+    <!-- ============================================== -->
+    <div id="orderSuccessModal" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl text-center space-y-3">
+        <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-2xl">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h3 class="font-extrabold text-lg text-stone-900">Order Placed Successfully!</h3>
+        <p class="text-xs text-stone-500">Owner Duryodhan Beura has been notified for Badamba workshop fulfillment.</p>
+
+        <div id="receiptContent" class="text-left bg-stone-50 p-3 rounded-xl border border-stone-200 text-xs space-y-1.5">
+          <!-- Dynamic receipt values -->
+        </div>
+
+        <div class="space-y-2 pt-2">
+          <button id="sendOrderWhatsAppBtn" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs shadow flex items-center justify-center gap-2">
+            <i class="fa-brands fa-whatsapp text-sm"></i>
+            <span>Send Order Copy on WhatsApp</span>
+          </button>
+          <button onclick="closeOrderSuccessModal()" class="w-full py-2 bg-stone-800 text-white font-semibold rounded-xl text-xs">
+            Continue Shopping
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- DRAWER / POPUP: LIVE CHAT WITH OWNER -->
+    <!-- ============================================== -->
+    <div id="liveChatModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs hidden flex items-end sm:items-center justify-center p-0 sm:p-4">
+      <div class="bg-white w-full max-w-md rounded-t-2xl sm:rounded-2xl h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+        
+        <!-- Live Chat Header -->
+        <div class="bg-wood-900 text-white p-3 flex items-center justify-between shadow">
+          <div class="flex items-center space-x-2.5">
+            <div class="relative">
+              <div class="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center font-bold text-xs text-white border-2 border-amber-300">
+                DB
+              </div>
+              <span class="w-2.5 h-2.5 bg-emerald-400 border border-wood-900 rounded-full absolute bottom-0 right-0"></span>
+            </div>
+            <div>
+              <p class="font-bold text-xs leading-none">Duryodhan Beura (Owner)</p>
+              <p class="text-[10px] text-amber-200 mt-0.5">APNA FURNITURES • Badamba</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:9937867692" class="text-amber-300 p-1 hover:text-white"><i class="fa-solid fa-phone text-xs"></i></a>
+            <button onclick="openWhatsAppChat('Hi Duryodhan ji, chatting with you from Apna Furnitures app!')" class="text-emerald-400 p-1 hover:text-white"><i class="fa-brands fa-whatsapp text-sm"></i></button>
+            <button onclick="toggleLiveChat(false)" class="text-stone-400 hover:text-white p-1"><i class="fa-solid fa-xmark text-sm"></i></button>
+          </div>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div id="chatMessages" class="flex-1 p-3 overflow-y-auto space-y-2.5 bg-stone-100 text-xs">
+          <!-- Welcome message -->
+          <div class="flex items-start space-x-2">
+            <div class="w-6 h-6 rounded-full bg-wood-800 text-white flex items-center justify-center text-[10px] font-bold shrink-0">DB</div>
+            <div class="bg-white p-2.5 rounded-2xl rounded-tl-none border border-stone-200 max-w-[80%] shadow-sm">
+              <p class="font-bold text-amber-900 text-[10px] mb-0.5">Duryodhan Beura</p>
+              <p class="text-stone-800 text-[11px]">Namaskar! Welcome to Apna Furnitures. We craft homemade teak & sal wood sofas, beds, dining sets, mirrors and shelves in Badamba, Cuttack. How can I help you today?</p>
+              <span class="text-[9px] text-stone-400 mt-1 block text-right">Just now</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick reply suggestions -->
+        <div class="p-1.5 bg-stone-50 border-t border-stone-200 flex space-x-1.5 overflow-x-auto no-scrollbar text-[10px]">
+          <button onclick="sendQuickReply('Can you make a customized Bed design?')" class="px-2 py-1 bg-white border border-stone-300 rounded-full whitespace-nowrap hover:bg-amber-50">Custom bed design?</button>
+          <button onclick="sendQuickReply('What is the delivery charge to Cuttack/Bhubaneswar?')" class="px-2 py-1 bg-white border border-stone-300 rounded-full whitespace-nowrap hover:bg-amber-50">Delivery cost?</button>
+          <button onclick="sendQuickReply('Can I visit your workshop at Bangarsingha?')" class="px-2 py-1 bg-white border border-stone-300 rounded-full whitespace-nowrap hover:bg-amber-50">Workshop location?</button>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="p-2 bg-white border-t border-stone-200 flex items-center space-x-1.5">
+          <input id="chatInputBox" type="text" placeholder="Type your message to owner..." onkeydown="if(event.key === 'Enter') sendChatMessage()" class="flex-1 text-xs p-2 border border-stone-300 rounded-xl focus:outline-none focus:ring-1 focus:ring-amber-500">
+          <button onclick="sendChatMessage()" class="w-8 h-8 rounded-xl bg-wood-800 hover:bg-wood-700 text-amber-300 flex items-center justify-center shadow">
+            <i class="fa-solid fa-paper-plane text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- OWNER INFO POPUP -->
+    <div id="ownerDetailsPopup" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-sm rounded-2xl p-4 shadow-xl text-center space-y-3">
+        <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-800 mx-auto flex items-center justify-center text-lg font-bold">
+          <i class="fa-solid fa-address-card"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-stone-900 text-sm">APNA FURNITURES</h3>
+          <p class="text-xs font-semibold text-amber-800">Owner: Duryodhan Beura</p>
+        </div>
+        <div class="text-left text-xs bg-stone-50 p-3 rounded-xl border border-stone-200 space-y-1">
+          <p><span class="font-semibold text-stone-700">Phone:</span> 9937867692</p>
+          <p><span class="font-semibold text-stone-700">Location:</span> Bangarsingha, Badamba, Kataka</p>
+          <p><span class="font-semibold text-stone-700">PIN:</span> 754031</p>
+          <p><span class="font-semibold text-stone-700">Speciality:</span> Home made wood furniture, polishing, customized room orders</p>
+        </div>
+        <button onclick="hideOwnerDetailsModal()" class="w-full py-1.5 bg-stone-800 text-white rounded-xl text-xs font-semibold">
+          Close
+        </button>
+      </div>
+    </div>
+
+    <!-- IN-APP TOAST & CONFIRM NOTIFICATIONS (NO NATIVE ALERTS) -->
+    <div id="appToast" class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] max-w-xs w-[90%] py-2.5 px-4 rounded-xl shadow-2xl text-xs font-semibold text-white transition-all duration-300 opacity-0 pointer-events-none translate-y-[-10px] text-center flex items-center justify-center gap-2">
+      <span id="toastIcon"></span>
+      <span id="toastMessage"></span>
+    </div>
+
+    <!-- CUSTOM CONFIRMATION MODAL -->
+    <div id="customConfirmModal" class="fixed inset-0 z-[95] bg-black/60 backdrop-blur-xs hidden flex items-center justify-center p-4">
+      <div class="bg-white w-full max-w-xs rounded-2xl p-4 shadow-2xl text-center space-y-3 border border-stone-200">
+        <div id="confirmIconContainer" class="w-10 h-10 rounded-full bg-amber-100 text-amber-800 mx-auto flex items-center justify-center text-base">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+        </div>
+        <div>
+          <h4 id="confirmTitle" class="font-bold text-sm text-stone-900">Confirmation</h4>
+          <p id="confirmDesc" class="text-xs text-stone-500 mt-1 leading-relaxed"></p>
+        </div>
+        <div class="flex gap-2 pt-1">
+          <button id="confirmOkBtn" class="flex-1 py-2 bg-wood-800 hover:bg-wood-900 text-white rounded-xl text-xs font-bold shadow">Confirm</button>
+          <button id="confirmCancelBtn" class="flex-1 py-2 bg-stone-200 hover:bg-stone-300 text-stone-700 rounded-xl text-xs font-semibold">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+  </div> <!-- End Mobile App Wrapper -->
+
+  <!-- ============================================== -->
+  <!-- JAVASCRIPT: APPLICATION LOGIC & STORAGE -->
+  <!-- ============================================== -->
+  <script>
+    const INITIAL_FURNITURE = [
+      {
+        id: "af-101",
+        name: "Royal Teak 5-Seater Sofa Set",
+        category: "Sofa",
+        price: 28500,
+        originalPrice: 34000,
+        material: "100% Solid Teak Wood with High-Density Foam",
+        description: "Handcrafted in Badamba workshop with rich walnut finish and royal textured fabric.",
+        image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80",
+        isHandmade: true,
+      },
+      {
+        id: "af-102",
+        name: "King Size Carved Wooden Bed",
+        category: "Bed",
+        price: 32000,
+        originalPrice: 38000,
+        material: "Pure Odisha Sal Wood, Termite Treated",
+        description: "Includes storage boxes and majestic carved floral headboard.",
+        image: "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80",
+        isHandmade: true,
+      },
+      {
+        id: "af-103",
+        name: "6-Seater Solid Wood Dining Table",
+        category: "Dining",
+        price: 24500,
+        originalPrice: 29000,
+        material: "Sheesham / Sissoo Wood with 6 cushioned chairs",
+        description: "Mirror gloss polish and durable heat-resistant surface handcrafted in Badamba.",
+        image: "https://images.unsplash.com/photo-1617806118233-18e1de247200?auto=format&fit=crop&w=600&q=80",
+        isHandmade: true,
+      },
+      {
+        id: "af-104",
+        name: "Handmade Carved Dressing Mirror",
+        category: "Mirror",
+        price: 6800,
+        originalPrice: 8500,
+        material: "Seasoned Teak Wood with High-Definition Glass",
+        description: "Traditional Odisha artistic wood carving with bottom drawer storage.",
+        image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=600&q=80",
+        isHandmade: true,
+      },
+      {
+        id: "af-105",
+        name: "Multi-Tier Wooden Book & Display Rack",
+        category: "Shelf",
+        price: 7500,
+        originalPrice: 9200,
+        material: "Durable Sal Wood with Honey Matte Finish",
+        description: "Sturdy 5-tier open shelf for living room, books, and decorative idols.",
+        image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?auto=format&fit=crop&w=600&q=80",
+        isHandmade: true,
+      },
+      {
+        id: "af-106",
+        name: "Heritage Wooden Rocking Armchair",
+        category: "Chair",
+        price: 9200,
+        originalPrice: 11500,
+        material: "Pure Teak Wood with ergonomic spinal curve",
+        description: "Smooth glide rocking chair hand-balanced by Badamba carpenters.",
+        image: "https://images.unsplash.com/photo-1580481077195-c3288b5074f7?auto=format&fit=crop&w=600&q=80",
+        isHandmade: true,
+      }
+    ];
+
+    const STORAGE_KEY_PRODUCTS = "apna_furnitures_products_v2";
+    const STORAGE_KEY_CART = "apna_furnitures_cart_v2";
+    const STORAGE_KEY_WISHLIST = "apna_furnitures_wishlist_v2";
+    const STORAGE_KEY_CHAT = "apna_furnitures_chat_v2";
+    const STORAGE_KEY_FOUNDER_AUTH = "apna_furnitures_founder_auth_v1";
+
+    let products = [];
+    let cart = [];
+    let wishlist = [];
+    let selectedCategory = "All";
+    let searchQuery = "";
+    let mediaStream = null;
+    let currentCapturedImage = null;
+    let pendingOrderDetails = null;
+    let isFounderAuthenticated = false;
+
+    // Contact & Founder Credentials
+    const OWNER_PHONE = "9937867692";
+    const OWNER_NAME = "DURYODHAN BEURA";
+    const STORE_ADDRESS = "Bangarsingha, Badamba, Kataka, PIN: 754031";
+    const VALID_PINS = ["754031", "1234", "9937"];
+    const CATEGORIES = ["All", "Sofa", "Bed", "Dining", "Chair", "Mirror", "Shelf", "Handmade"];
+
+    let toastTimeout = null;
+    function showToast(message, type = "info") {
+      const toast = document.getElementById("appToast");
+      const icon = document.getElementById("toastIcon");
+      const msg = document.getElementById("toastMessage");
+
+      if (toastTimeout) clearTimeout(toastTimeout);
+
+      msg.innerText = message;
+      if (type === "success") {
+        toast.className = "fixed top-4 left-1/2 -translate-x-1/2 z-[100] max-w-xs w-[90%] py-2.5 px-4 rounded-xl shadow-2xl text-xs font-semibold text-white bg-emerald-600 transition-all duration-300 opacity-100 translate-y-0 text-center flex items-center justify-center gap-2";
+        icon.className = "fa-solid fa-circle-check";
+      } else if (type === "error") {
+        toast.className = "fixed top-4 left-1/2 -translate-x-1/2 z-[100] max-w-xs w-[90%] py-2.5 px-4 rounded-xl shadow-2xl text-xs font-semibold text-white bg-rose-600 transition-all duration-300 opacity-100 translate-y-0 text-center flex items-center justify-center gap-2";
+        icon.className = "fa-solid fa-circle-xmark";
+      } else {
+        toast.className = "fixed top-4 left-1/2 -translate-x-1/2 z-[100] max-w-xs w-[90%] py-2.5 px-4 rounded-xl shadow-2xl text-xs font-semibold text-white bg-wood-900 transition-all duration-300 opacity-100 translate-y-0 text-center flex items-center justify-center gap-2";
+        icon.className = "fa-solid fa-info-circle";
+      }
+
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("opacity-100", "translate-y-0");
+        toast.classList.add("opacity-0", "translate-y-[-10px]", "pointer-events-none");
+      }, 3000);
+    }
+
+    function showConfirmDialog(title, description, onConfirm) {
+      const modal = document.getElementById("customConfirmModal");
+      document.getElementById("confirmTitle").innerText = title;
+      document.getElementById("confirmDesc").innerText = description;
+      modal.classList.remove("hidden");
+
+      const okBtn = document.getElementById("confirmOkBtn");
+      const cancelBtn = document.getElementById("confirmCancelBtn");
+
+      const cleanup = () => {
+        modal.classList.add("hidden");
+        okBtn.onclick = null;
+        cancelBtn.onclick = null;
+      };
+
+      okBtn.onclick = () => {
+        cleanup();
+        onConfirm();
+      };
+      cancelBtn.onclick = cleanup;
+    }
+
+    function saveProducts() {
+      try {
+        localStorage.setItem(STORAGE_KEY_PRODUCTS, JSON.stringify(products));
+      } catch (e) {
+        console.warn("Storage quota warning", e);
+      }
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem(STORAGE_KEY_CART, JSON.stringify(cart));
+      } catch (e) {
+        console.warn("Cart storage error", e);
+      }
+      updateBadges();
+    }
+
+    function saveWishlist() {
+      try {
+        localStorage.setItem(STORAGE_KEY_WISHLIST, JSON.stringify(wishlist));
+      } catch (e) {
+        console.warn("Wishlist storage error", e);
+      }
+      updateBadges();
+    }
+
+    function initApp() {
+      const savedAuth = localStorage.getItem(STORAGE_KEY_FOUNDER_AUTH);
+      if (savedAuth === "true") {
+        isFounderAuthenticated = true;
+      }
+
+      const storedProds = localStorage.getItem(STORAGE_KEY_PRODUCTS);
+      if (storedProds) {
+        try {
+          products = JSON.parse(storedProds);
+        } catch (e) {
+          products = INITIAL_FURNITURE;
+        }
+      } else {
+        products = INITIAL_FURNITURE;
+        saveProducts();
+      }
+
+      const storedCart = localStorage.getItem(STORAGE_KEY_CART);
+      if (storedCart) {
+        try { cart = JSON.parse(storedCart); } catch (e) { cart = []; }
+      }
+
+      const storedWishlist = localStorage.getItem(STORAGE_KEY_WISHLIST);
+      if (storedWishlist) {
+        try { wishlist = JSON.parse(storedWishlist); } catch (e) { wishlist = []; }
+      }
+
+      updateFounderUI();
+      renderCategories();
+      renderProducts();
+      updateBadges();
+      renderWishlist();
+      renderCart();
+    }
+
+    function renderCategories() {
+      const container = document.getElementById("categoryContainer");
+      if (!container) return;
+
+      container.innerHTML = CATEGORIES.map(cat => {
+        const isActive = (selectedCategory === cat);
+        return `
+          <button 
+            onclick="selectCategory('${cat}')" 
+            class="px-3.5 py-1.5 rounded-full whitespace-nowrap text-xs transition font-semibold ${
+              isActive 
+                ? 'bg-wood-800 text-amber-200 shadow-sm border border-wood-700' 
+                : 'bg-stone-100 text-stone-700 hover:bg-stone-200 border border-stone-200'
+            }">
+            ${cat === 'Handmade' ? '🪓 ' + cat : cat}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function selectCategory(cat) {
+      selectedCategory = cat;
+      renderCategories();
+      renderProducts();
+    }
+
+    function updateFounderUI() {
+      const activeBar = document.getElementById("founderActiveBar");
+      const lockIcon = document.getElementById("founderLockIcon");
+      const centerNavCircle = document.getElementById("centerNavCircle");
+      const centerNavIcon = document.getElementById("centerNavIcon");
+      const centerNavLabel = document.getElementById("centerNavLabel");
+      const bannerIcon = document.getElementById("bannerActionIcon");
+      const bannerText = document.getElementById("bannerActionText");
+
+      if (isFounderAuthenticated) {
+        if (activeBar) activeBar.classList.remove("hidden");
+        if (lockIcon) lockIcon.className = "fa-solid fa-lock-open text-xs text-amber-300";
+        if (centerNavCircle) centerNavCircle.className = "w-11 h-11 rounded-full bg-gradient-to-tr from-amber-600 to-wood-700 text-white flex items-center justify-center shadow-lg border-2 border-white transform active:scale-90 transition";
+        if (centerNavIcon) centerNavIcon.className = "fa-solid fa-camera text-base";
+        if (centerNavLabel) centerNavLabel.innerText = "Camera";
+        if (bannerIcon) bannerIcon.className = "fa-solid fa-camera mb-0.5 text-sm";
+        if (bannerText) bannerText.innerText = "Add Design";
+      } else {
+        if (activeBar) activeBar.classList.add("hidden");
+        if (lockIcon) lockIcon.className = "fa-solid fa-lock text-xs text-amber-200";
+        if (centerNavCircle) centerNavCircle.className = "w-11 h-11 rounded-full bg-stone-700 text-amber-300 flex items-center justify-center shadow-lg border-2 border-white transform active:scale-90 transition";
+        if (centerNavIcon) centerNavIcon.className = "fa-solid fa-lock text-base";
+        if (centerNavLabel) centerNavLabel.innerText = "Founder";
+        if (bannerIcon) bannerIcon.className = "fa-solid fa-lock mb-0.5 text-sm";
+        if (bannerText) bannerText.innerText = "Founder Login";
+      }
+    }
+
+    function handleFounderAuthClick() {
+      if (isFounderAuthenticated) {
+        showConfirmDialog(
+          "Founder Sign Out",
+          "You are currently signed in as Founder (Duryodhan Beura). Do you want to lock controls?",
+          () => logoutFounderMode()
+        );
+      } else {
+        toggleFounderLoginModal(true);
+      }
+    }
+
+    function handleProtectedCameraClick() {
+      if (isFounderAuthenticated) {
+        toggleAdminCameraModal(true);
+      } else {
+        toggleFounderLoginModal(true);
+      }
+    }
+
+    function toggleFounderLoginModal(show) {
+      const modal = document.getElementById("founderLoginModal");
+      const err = document.getElementById("founderAuthError");
+      if (err) err.classList.add("hidden");
+      if (show) {
+        modal.classList.remove("hidden");
+        const pinInput = document.getElementById("founderAuthPin");
+        if (pinInput) pinInput.value = "";
+      } else {
+        modal.classList.add("hidden");
+      }
+    }
+
+    function submitFounderLogin() {
+      const phoneInput = document.getElementById("founderAuthPhone").value.trim();
+      const pinInput = document.getElementById("founderAuthPin").value.trim();
+      const err = document.getElementById("founderAuthError");
+
+      if (phoneInput === OWNER_PHONE && VALID_PINS.includes(pinInput)) {
+        isFounderAuthenticated = true;
+        localStorage.setItem(STORAGE_KEY_FOUNDER_AUTH, "true");
+        if (err) err.classList.add("hidden");
+        toggleFounderLoginModal(false);
+        updateFounderUI();
+        renderProducts();
+        showToast("Welcome Duryodhan Beura! Camera Studio unlocked.", "success");
+      } else {
+        if (err) {
+          err.innerText = "Access Denied: Only Founder Duryodhan Beura (+91 9937867692) can unlock camera access.";
+          err.classList.remove("hidden");
+        }
+      }
+    }
+
+    function logoutFounderMode() {
+      isFounderAuthenticated = false;
+      localStorage.removeItem(STORAGE_KEY_FOUNDER_AUTH);
+      stopCameraStream();
+      toggleAdminCameraModal(false);
+      updateFounderUI();
+      renderProducts();
+      showToast("Founder mode locked.", "info");
+    }
+
+    function handleSearch(val) {
+      searchQuery = val.trim().toLowerCase();
+      const clearBtn = document.getElementById("clearSearchBtn");
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove("hidden");
+      } else {
+        clearBtn.classList.add("hidden");
+      }
+      renderProducts();
+    }
+
+    function clearSearch() {
+      const input = document.getElementById("furnitureSearchInput");
+      input.value = "";
+      searchQuery = "";
+      document.getElementById("clearSearchBtn").classList.add("hidden");
+      renderProducts();
+    }
+
+    function renderProducts() {
+      const grid = document.getElementById("productsGrid");
+      const emptyState = document.getElementById("noProductsFound");
+      const title = document.getElementById("currentCategoryTitle");
+      if (!grid) return;
+
+      const filtered = products.filter(item => {
+        const matchesCategory = (selectedCategory === "All") || 
+          (selectedCategory === "Handmade" && item.isHandmade) ||
+          (item.category && item.category.toLowerCase() === selectedCategory.toLowerCase());
+        const matchesSearch = searchQuery === "" || 
+          (item.name && item.name.toLowerCase().includes(searchQuery)) ||
+          (item.category && item.category.toLowerCase().includes(searchQuery)) ||
+          (item.material && item.material.toLowerCase().includes(searchQuery));
+        return matchesCategory && matchesSearch;
+      });
+
+      if (title) {
+        title.innerText = `${selectedCategory === 'All' ? 'All Furniture' : selectedCategory} (${filtered.length})`;
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = "";
+        if (emptyState) emptyState.classList.remove("hidden");
+        return;
+      }
+
+      if (emptyState) emptyState.classList.add("hidden");
+      grid.innerHTML = filtered.map(item => {
+        const isLiked = wishlist.includes(item.id);
+        const inCart = cart.some(ci => ci.id === item.id);
+        const displayImg = item.image || 'https://placehold.co/400x300/4e3025/f7ede2?text=Apna+Furnitures';
+
+        return `
+          <div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm flex flex-col justify-between transition hover:shadow-md">
+            <div class="relative w-full aspect-square bg-stone-100 overflow-hidden">
+              <img 
+                src="${displayImg}" 
+                alt="${item.name}" 
+                onerror="this.src='https://placehold.co/400x300/4e3025/f7ede2?text=Apna+Furnitures'"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              
+              <button onclick="toggleWishlist('${item.id}')" class="w-7 h-7 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-xs absolute top-2 right-2 shadow-sm transition active:scale-90 ${isLiked ? 'text-rose-500' : 'text-stone-400 hover:text-stone-700'}">
+                <i class="${isLiked ? 'fa-solid fa-heart' : 'fa-regular fa-heart'}"></i>
+              </button>
+
+              <span class="absolute top-2 left-2 bg-stone-900/80 text-amber-200 text-[9px] font-bold px-1.5 py-0.5 rounded backdrop-blur-xs">
+                ${item.category}
+              </span>
+
+              ${item.isHandmade ? `
+                <span class="absolute bottom-2 left-2 bg-amber-600/90 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                  Badamba Craft
+                </span>
+              ` : ''}
+            </div>
+
+            <div class="p-2.5 flex-1 flex flex-col justify-between">
+              <div>
+                <h4 class="font-bold text-stone-800 text-xs line-clamp-1 leading-snug" title="${item.name}">
+                  ${item.name}
+                </h4>
+                <p class="text-[10px] text-stone-500 line-clamp-1 mt-0.5">
+                  ${item.material || 'Solid Wood Badamba Finish'}
+                </p>
+                <div class="flex items-baseline gap-1.5 mt-1.5">
+                  <span class="text-sm font-extrabold text-amber-800">₹${Number(item.price).toLocaleString('en-IN')}</span>
+                  ${item.originalPrice ? `<span class="text-[10px] text-stone-400 line-through">₹${Number(item.originalPrice).toLocaleString('en-IN')}</span>` : ''}
+                </div>
+              </div>
+
+              <div class="mt-2.5 space-y-1">
+                <button onclick="addToCart('${item.id}')" class="w-full py-1.5 px-2 rounded-lg text-xs font-bold flex items-center justify-center gap-1.5 transition active:scale-95 ${inCart ? 'bg-emerald-600 hover:bg-emerald-700 text-white' : 'bg-wood-800 hover:bg-wood-900 text-white shadow'}">
+                  <i class="fa-solid ${inCart ? 'fa-check' : 'fa-cart-plus'} text-[11px]"></i>
+                  <span>${inCart ? 'Added in Cart' : 'Add to Cart'}</span>
+                </button>
+
+                <div class="flex items-center justify-between pt-1 border-t border-stone-100 text-[10px]">
+                  <button onclick="inquireOnWhatsApp('${item.name.replace(/'/g, "\\'")}', ${item.price})" class="text-emerald-700 hover:text-emerald-800 font-semibold flex items-center gap-1">
+                    <i class="fa-brands fa-whatsapp text-xs"></i> Inquire
+                  </button>
+                  ${isFounderAuthenticated ? `
+                    <button onclick="deleteProduct('${item.id}')" title="Owner Delete Product" class="text-rose-500 hover:text-rose-700 p-1 flex items-center gap-1 font-semibold">
+                      <i class="fa-regular fa-trash-can"></i>
+                      <span>Delete</span>
+                    </button>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function toggleWishlist(productId) {
+      if (wishlist.includes(productId)) {
+        wishlist = wishlist.filter(id => id !== productId);
+        showToast("Removed from wishlist", "info");
+      } else {
+        wishlist.push(productId);
+        showToast("Added to wishlist ❤️", "success");
+      }
+      saveWishlist();
+      renderProducts();
+      renderWishlist();
+    }
+
+    function renderWishlist() {
+      const grid = document.getElementById("wishlistGrid");
+      const empty = document.getElementById("emptyWishlistState");
+      const badge = document.getElementById("wishlistCountBadge");
+      if (!grid) return;
+
+      const likedItems = products.filter(p => wishlist.includes(p.id));
+      if (badge) badge.innerText = `${likedItems.length} Items`;
+
+      if (likedItems.length === 0) {
+        grid.innerHTML = "";
+        if (empty) empty.classList.remove("hidden");
+        return;
+      }
+
+      if (empty) empty.classList.add("hidden");
+      grid.innerHTML = likedItems.map(item => `
+        <div class="bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm flex flex-col justify-between">
+          <div class="relative w-full aspect-square bg-stone-100">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x300/4e3025/f7ede2?text=Apna+Furnitures'">
+            <button onclick="toggleWishlist('${item.id}')" class="w-7 h-7 rounded-full bg-white/90 text-rose-500 flex items-center justify-center text-xs absolute top-2 right-2 shadow">
+              <i class="fa-solid fa-heart"></i>
+            </button>
+          </div>
+          <div class="p-2.5">
+            <h4 class="font-bold text-stone-800 text-xs line-clamp-1">${item.name}</h4>
+            <p class="text-xs font-black text-amber-800 mt-1">₹${Number(item.price).toLocaleString('en-IN')}</p>
+            <button onclick="addToCart('${item.id}')" class="w-full mt-2 py-1.5 bg-wood-800 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-1 shadow">
+              <i class="fa-solid fa-cart-shopping text-[10px]"></i> Move to Cart
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addToCart(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+
+      const existing = cart.find(c => c.id === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({
+          id: prod.id,
+          name: prod.name,
+          category: prod.category,
+          price: prod.price,
+          image: prod.image,
+          quantity: 1
+        });
+      }
+
+      showToast(`Added ${prod.name} to cart`, "success");
+      saveCart();
+      renderProducts();
+      renderCart();
+    }
+
+    function updateCartQuantity(productId, delta) {
+      const item = cart.find(c => c.id === productId);
+      if (!item) return;
+
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(c => c.id !== productId);
+      }
+      saveCart();
+      renderProducts();
+      renderCart();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(c => c.id !== productId);
+      showToast("Item removed from cart", "info");
+      saveCart();
+      renderProducts();
+      renderCart();
+    }
+
+    function renderCart() {
+      const container = document.getElementById("cartItemsContainer");
+      const empty = document.getElementById("emptyCartState");
+      const checkoutSec = document.getElementById("cartCheckoutSection");
+      const badge = document.getElementById("cartCountBadge");
+      if (!container) return;
+
+      const count = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+      if (badge) badge.innerText = `${count} Items`;
+
+      if (cart.length === 0) {
+        container.innerHTML = "";
+        if (empty) empty.classList.remove("hidden");
+        if (checkoutSec) checkoutSec.classList.add("hidden");
+        return;
+      }
+
+      if (empty) empty.classList.add("hidden");
+      if (checkoutSec) checkoutSec.classList.remove("hidden");
+
+      let subtotal = 0;
+      container.innerHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        subtotal += itemTotal;
+        return `
+          <div class="flex items-center gap-3 bg-white p-2.5 rounded-xl border border-stone-200 shadow-sm">
+            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-lg object-cover shrink-0" onerror="this.src='https://placehold.co/100/4e3025/f7ede2?text=Furniture'">
+            <div class="flex-1 min-w-0">
+              <h4 class="font-bold text-xs text-stone-800 truncate">${item.name}</h4>
+              <p class="text-[10px] text-stone-500">${item.category}</p>
+              <p class="text-xs font-black text-amber-800 mt-0.5">₹${Number(item.price).toLocaleString('en-IN')}</p>
+            </div>
+            
+            <div class="flex flex-col items-end gap-1.5 shrink-0">
+              <div class="flex items-center border border-stone-200 rounded-lg overflow-hidden bg-stone-50">
+                <button onclick="updateCartQuantity('${item.id}', -1)" class="w-6 h-6 flex items-center justify-center text-xs text-stone-600 hover:bg-stone-200">-</button>
+                <span class="w-6 text-center text-xs font-bold">${item.quantity}</span>
+                <button onclick="updateCartQuantity('${item.id}', 1)" class="w-6 h-6 flex items-center justify-center text-xs text-stone-600 hover:bg-stone-200">+</button>
+              </div>
+              <button onclick="removeFromCart('${item.id}')" class="text-stone-400 hover:text-rose-500 text-[10px]">
+                <i class="fa-solid fa-trash-can mr-1"></i>Remove
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const subtotalEl = document.getElementById("cartSubtotal");
+      const totalEl = document.getElementById("cartTotal");
+      if (subtotalEl) subtotalEl.innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+      if (totalEl) totalEl.innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+    }
+
+    function updateBadges() {
+      const cartCount = cart.reduce((acc, curr) => acc + curr.quantity, 0);
+      const cartNavBadge = document.getElementById("badgeCartNav");
+      if (cartNavBadge) {
+        if (cartCount > 0) {
+          cartNavBadge.innerText = cartCount;
+          cartNavBadge.classList.remove("hidden");
+        } else {
+          cartNavBadge.classList.add("hidden");
+        }
+      }
+
+      const wishCount = wishlist.length;
+      const wishNavBadge = document.getElementById("badgeWishlistNav");
+      if (wishNavBadge) {
+        if (wishCount > 0) {
+          wishNavBadge.innerText = wishCount;
+          wishNavBadge.classList.remove("hidden");
+        } else {
+          wishNavBadge.classList.add("hidden");
+        }
+      }
+    }
+
+    function deleteProduct(productId) {
+      if (!isFounderAuthenticated) {
+        showToast("Restricted: Only Founder Duryodhan Beura can delete products.", "error");
+        return;
+      }
+
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+
+      showConfirmDialog(
+        "Delete Furniture",
+        `Permanently remove "${prod.name}" from APNA FURNITURES catalog?`,
+        () => {
+          products = products.filter(p => p.id !== productId);
+          cart = cart.filter(c => c.id !== productId);
+          wishlist = wishlist.filter(id => id !== productId);
+          saveProducts();
+          saveCart();
+          saveWishlist();
+          renderProducts();
+          renderWishlist();
+          renderCart();
+          showToast(`Deleted "${prod.name}"`, "info");
+        }
+      );
+    }
+
+    function toggleAdminCameraModal(show) {
+      if (show && !isFounderAuthenticated) {
+        toggleFounderLoginModal(true);
+        return;
+      }
+
+      const modal = document.getElementById("adminCameraModal");
+      if (!modal) return;
+      if (show) {
+        modal.classList.remove("hidden");
+      } else {
+        stopCameraStream();
+        modal.classList.add("hidden");
+      }
+    }
+
+    async function startLiveCamera() {
+      const video = document.getElementById("cameraVideo");
+      const preview = document.getElementById("photoPreview");
+      const placeholder = document.getElementById("cameraPlaceholder");
+      const controls = document.getElementById("liveStreamControls");
+
+      preview.classList.add("hidden");
+      placeholder.classList.add("hidden");
+
+      try {
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          mediaStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: { ideal: "environment" } },
+            audio: false
+          });
+          video.srcObject = mediaStream;
+          video.classList.remove("hidden");
+          controls.classList.remove("hidden");
+        } else {
+          fallbackCameraInput();
+        }
+      } catch (err) {
+        console.warn("Direct stream error, opening fallback camera file upload", err);
+        fallbackCameraInput();
+      }
+    }
+
+    function fallbackCameraInput() {
+      const input = document.getElementById("fileImageInput");
+      if (input) input.click();
+    }
+
+    function captureLivePhoto() {
+      const video = document.getElementById("cameraVideo");
+      const canvas = document.getElementById("cameraCanvas");
+      const preview = document.getElementById("photoPreview");
+      const controls = document.getElementById("liveStreamControls");
+
+      if (!video.videoWidth) return;
+
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      const dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+      currentCapturedImage = dataUrl;
+
+      stopCameraStream();
+      video.classList.add("hidden");
+      controls.classList.add("hidden");
+
+      preview.src = dataUrl;
+      preview.classList.remove("hidden");
+      showToast("Photo captured successfully!", "success");
+    }
+
+    function stopCameraStream() {
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+      }
+      const video = document.getElementById("cameraVideo");
+      const controls = document.getElementById("liveStreamControls");
+      if (video) video.classList.add("hidden");
+      if (controls) controls.classList.add("hidden");
+    }
+
+    function handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentCapturedImage = e.target.result;
+        stopCameraStream();
+        const preview = document.getElementById("photoPreview");
+        const placeholder = document.getElementById("cameraPlaceholder");
+        if (placeholder) placeholder.classList.add("hidden");
+        if (preview) {
+          preview.src = currentCapturedImage;
+          preview.classList.remove("hidden");
+        }
+        showToast("Photo uploaded successfully!", "success");
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function saveNewFurnitureProduct() {
+      const name = document.getElementById("newProdName").value.trim();
+      const category = document.getElementById("newProdCategory").value;
+      const priceVal = document.getElementById("newProdPrice").value.trim();
+      const material = document.getElementById("newProdMaterial").value.trim();
+      const desc = document.getElementById("newProdDesc").value.trim();
+
+      if (!name) {
+        showToast("Please enter the furniture item name.", "error");
+        return;
+      }
+      if (!priceVal || isNaN(priceVal) || Number(priceVal) <= 0) {
+        showToast("Please enter a valid price in INR.", "error");
+        return;
+      }
+
+      const defaultPlaceholder = "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80";
+      const finalImage = currentCapturedImage || defaultPlaceholder;
+
+      const newProduct = {
+        id: "custom-" + Date.now(),
+        name: name,
+        category: category,
+        price: Number(priceVal),
+        originalPrice: Math.round(Number(priceVal) * 1.15),
+        material: material || "Pure Homemade Teak Wood - Badamba",
+        description: desc || "Crafted at Badamba workshop by Duryodhan Beura.",
+        image: finalImage,
+        isHandmade: true
+      };
+
+      products.unshift(newProduct);
+      saveProducts();
+      renderProducts();
+
+      // Reset form
+      document.getElementById("newProdName").value = "";
+      document.getElementById("newProdPrice").value = "";
+      document.getElementById("newProdMaterial").value = "";
+      document.getElementById("newProdDesc").value = "";
+      currentCapturedImage = null;
+      const preview = document.getElementById("photoPreview");
+      const placeholder = document.getElementById("cameraPlaceholder");
+      if (preview) preview.classList.add("hidden");
+      if (placeholder) placeholder.classList.remove("hidden");
+
+      toggleAdminCameraModal(false);
+      showToast(`Added "${name}" to shop!`, "success");
+      switchTab('catalog');
+    }
+
+    function openDeliveryAddressModal() {
+      if (cart.length === 0) return;
+      const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+      const totalEl = document.getElementById("modalCheckoutTotal");
+      if (totalEl) totalEl.innerText = `₹${subtotal.toLocaleString('en-IN')}`;
+      toggleCheckoutModal(true);
+    }
+
+    function toggleCheckoutModal(show) {
+      const modal = document.getElementById("checkoutModal");
+      if (!modal) return;
+      if (show) modal.classList.remove("hidden");
+      else modal.classList.add("hidden");
+    }
+
+    function toggleUpiModal(show) {
+      const modal = document.getElementById("upiPaymentModal");
+      if (!modal) return;
+      if (show) modal.classList.remove("hidden");
+      else modal.classList.add("hidden");
+    }
+
+    function processOrderCheckout() {
+      const name = document.getElementById("custName").value.trim();
+      const phone = document.getElementById("custPhone").value.trim();
+      const pin = document.getElementById("custPin").value.trim();
+      const addr = document.getElementById("custAddress").value.trim();
+      const landmark = document.getElementById("custLandmark").value.trim();
+      const selectedPayment = document.querySelector('input[name="paymentOption"]:checked')?.value || "UPI";
+
+      if (!name || !phone || !addr || !pin) {
+        showToast("Please fill Name, Phone, PIN, and Street Address.", "error");
+        return;
+      }
+
+      const subtotal = cart.reduce((acc, curr) => acc + (curr.price * curr.quantity), 0);
+
+      pendingOrderDetails = {
+        orderId: "AF-" + Math.floor(100000 + Math.random() * 900000),
+        date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }),
+        customerName: name,
+        customerPhone: phone,
+        deliveryAddress: `${addr}, Landmark: ${landmark || 'N/A'}, PIN: ${pin}`,
+        items: [...cart],
+        amount: subtotal,
+        paymentMethod: selectedPayment
+      };
+
+      toggleCheckoutModal(false);
+
+      if (selectedPayment === "UPI") {
+        const upiEl = document.getElementById("upiAmountPrompt");
+        if (upiEl) upiEl.innerText = `Payable Amount: ₹${subtotal.toLocaleString('en-IN')}`;
+        toggleUpiModal(true);
+      } else {
+        finalizePaymentSuccess("Cash on Delivery (Pay to Duryodhan on Arrival)");
+      }
+    }
+
+    function finalizePaymentSuccess(methodUsed) {
+      toggleUpiModal(false);
+      if (!pendingOrderDetails) return;
+
+      pendingOrderDetails.paymentMethod = methodUsed;
+
+      const receiptBox = document.getElementById("receiptContent");
+      if (receiptBox) {
+        receiptBox.innerHTML = `
+          <div class="flex justify-between border-b pb-1 font-mono text-[11px]">
+            <span>Order ID: <strong>${pendingOrderDetails.orderId}</strong></span>
+            <span>${pendingOrderDetails.date}</span>
+          </div>
+          <div class="py-1">
+            <p class="font-bold text-stone-800">${pendingOrderDetails.customerName} (${pendingOrderDetails.customerPhone})</p>
+            <p class="text-stone-600 text-[10px]">${pendingOrderDetails.deliveryAddress}</p>
+          </div>
+          <div class="border-t pt-1 space-y-0.5">
+            ${pendingOrderDetails.items.map(item => `
+              <div class="flex justify-between text-[11px]">
+                <span class="truncate max-w-[200px]">${item.quantity}x ${item.name}</span>
+                <span class="font-semibold">₹${(item.price * item.quantity).toLocaleString('en-IN')}</span>
+              </div>
+            `).join('')}
+          </div>
+          <div class="border-t border-dashed pt-1 flex justify-between font-bold text-amber-900">
+            <span>Total (${methodUsed}):</span>
+            <span>₹${pendingOrderDetails.amount.toLocaleString('en-IN')}</span>
+          </div>
+        `;
+      }
+
+      const orderMessage = `*NEW ORDER - APNA FURNITURES*%0A` +
+        `*Order ID:* ${pendingOrderDetails.orderId}%0A` +
+        `*Customer:* ${pendingOrderDetails.customerName}%0A` +
+        `*Phone:* ${pendingOrderDetails.customerPhone}%0A` +
+        `*Address:* ${pendingOrderDetails.deliveryAddress}%0A` +
+        `*Payment Mode:* ${methodUsed}%0A` +
+        `*Total Amount:* ₹${pendingOrderDetails.amount}%0A%0A` +
+        `*Furniture Items:*%0A` +
+        pendingOrderDetails.items.map(i => `• ${i.name} (Qty: ${i.quantity}) - ₹${i.price * i.quantity}`).join('%0A') +
+        `%0A%0APlease prepare this from Badamba workshop!`;
+
+      const waBtn = document.getElementById("sendOrderWhatsAppBtn");
+      if (waBtn) {
+        waBtn.onclick = function() {
+          window.open(`https://wa.me/91${OWNER_PHONE}?text=${orderMessage}`, '_blank');
+        };
+      }
+
+      cart = [];
+      saveCart();
+      renderCart();
+      renderProducts();
+
+      const successModal = document.getElementById("orderSuccessModal");
+      if (successModal) successModal.classList.remove("hidden");
+    }
+
+    function closeOrderSuccessModal() {
+      const modal = document.getElementById("orderSuccessModal");
+      if (modal) modal.classList.add("hidden");
+      switchTab('catalog');
+    }
+
+    function switchTab(tabId) {
+      document.getElementById("viewCatalog")?.classList.add("hidden");
+      document.getElementById("viewWishlist")?.classList.add("hidden");
+      document.getElementById("viewCart")?.classList.add("hidden");
+      document.getElementById("viewOwner")?.classList.add("hidden");
+
+      const navButtons = [
+        { id: 'navBtnCatalog', name: 'catalog' },
+        { id: 'navBtnWishlist', name: 'wishlist' },
+        { id: 'navBtnCart', name: 'cart' },
+        { id: 'navBtnOwner', name: 'owner' }
+      ];
+
+      navButtons.forEach(btn => {
+        const el = document.getElementById(btn.id);
+        if (!el) return;
+        if (btn.name === tabId) {
+          el.classList.add("text-amber-800");
+          el.classList.remove("text-stone-500");
+        } else {
+          el.classList.remove("text-amber-800");
+          el.classList.add("text-stone-500");
+        }
+      });
+
+      if (tabId === 'catalog') {
+        document.getElementById("viewCatalog")?.classList.remove("hidden");
+      } else if (tabId === 'wishlist') {
+        renderWishlist();
+        document.getElementById("viewWishlist")?.classList.remove("hidden");
+      } else if (tabId === 'cart') {
+        renderCart();
+        document.getElementById("viewCart")?.classList.remove("hidden");
+      } else if (tabId === 'owner') {
+        document.getElementById("viewOwner")?.classList.remove("hidden");
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function openWhatsAppChat(customMessage) {
+      const msg = encodeURIComponent(customMessage || `Hello Duryodhan Beura ji, I am contacting you from APNA FURNITURES app.`);
+      window.open(`https://wa.me/91${OWNER_PHONE}?text=${msg}`, '_blank');
+    }
+
+    function inquireOnWhatsApp(productName, price) {
+      const msg = `Namaskar Duryodhan ji! I am interested in buying: *${productName}* priced at ₹${price} from your APNA FURNITURES Badamba catalog. Please share availability & delivery time.`;
+      openWhatsAppChat(msg);
+    }
+
+    function showOwnerDetailsModal() {
+      document.getElementById("ownerDetailsPopup")?.classList.remove("hidden");
+    }
+
+    function hideOwnerDetailsModal() {
+      document.getElementById("ownerDetailsPopup")?.classList.add("hidden");
+    }
+
+    function toggleLiveChat(show) {
+      const modal = document.getElementById("liveChatModal");
+      if (!modal) return;
+      if (show) modal.classList.remove("hidden");
+      else modal.classList.add("hidden");
+    }
+
+    function sendQuickReply(text) {
+      const input = document.getElementById("chatInputBox");
+      if (input) {
+        input.value = text;
+        sendChatMessage();
+      }
+    }
+
+    function sendChatMessage() {
+      const input = document.getElementById("chatInputBox");
+      if (!input) return;
+      const message = input.value.trim();
+      if (!message) return;
+
+      const chatContainer = document.getElementById("chatMessages");
+      if (!chatContainer) return;
+
+      const userBubble = document.createElement("div");
+      userBubble.className = "flex items-start justify-end space-x-2";
+      userBubble.innerHTML = `
+        <div class="bg-wood-800 text-white p-2.5 rounded-2xl rounded-tr-none max-w-[80%] shadow-sm text-[11px]">
+          <p>${escapeHTML(message)}</p>
+          <span class="text-[9px] text-stone-300 mt-1 block text-right">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+        </div>
+      `;
+      chatContainer.appendChild(userBubble);
+      input.value = "";
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      setTimeout(() => {
+        let replyText = "Namaskar! I have received your inquiry. You can also directly call me at 9937867692 or tap the WhatsApp button for custom wood cutting!";
+        const lower = message.toLowerCase();
+        
+        if (lower.includes("bed") || lower.includes("size")) {
+          replyText = "We can customize King size (6x6.5 ft) or Queen size beds in pure Sal or Teak wood. Come visit our Bangarsingha workshop or send room sizes!";
+        } else if (lower.includes("delivery") || lower.includes("charge")) {
+          replyText = "We provide direct doorstep delivery across Badamba, Cuttack, Banki, and nearby areas with safe packaging!";
+        } else if (lower.includes("price") || lower.includes("rate") || lower.includes("discount")) {
+          replyText = "Because we manufacture our own furniture at Badamba without showroom middlemen, our prices are 30% lower than market rates!";
+        } else if (lower.includes("location") || lower.includes("where") || lower.includes("address")) {
+          replyText = "Our workshop is located at Bangarsingha, Badamba, Kataka, PIN: 754031. Welcome any day between 8 AM to 8 PM!";
+        }
+
+        const ownerBubble = document.createElement("div");
+        ownerBubble.className = "flex items-start space-x-2";
+        ownerBubble.innerHTML = `
+          <div class="w-6 h-6 rounded-full bg-amber-700 text-white flex items-center justify-center text-[10px] font-bold shrink-0">DB</div>
+          <div class="bg-white p-2.5 rounded-2xl rounded-tl-none border border-stone-200 max-w-[80%] shadow-sm">
+            <p class="font-bold text-amber-900 text-[10px] mb-0.5">Duryodhan Beura</p>
+            <p class="text-stone-800 text-[11px]">${replyText}</p>
+            <span class="text-[9px] text-stone-400 mt-1 block text-right">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
+          </div>
+        `;
+        chatContainer.appendChild(ownerBubble);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }, 700);
+    }
+
+    function escapeHTML(str) {
+      return str.replace(/[&<>'"]/g, 
+        tag => ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          "'": '&#39;',
+          '"': '&quot;'
+        }[tag] || tag)
+      );
+    }
+
+    window.addEventListener("DOMContentLoaded", initApp);
+  </script>
+</body>
+</html>
